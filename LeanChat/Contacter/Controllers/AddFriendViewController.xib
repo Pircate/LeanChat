@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFriendViewController">
+            <connections>
+                <outlet property="friendIDTextField" destination="qxD-EY-2tI" id="tTw-m1-ybb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qxD-EY-2tI">
+                    <rect key="frame" x="180" y="150" width="240" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="1r4-TF-4u4"/>
+                        <constraint firstAttribute="height" constant="30" id="s2a-SH-2lx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-Gy-NEk">
+                    <rect key="frame" x="250" y="285" width="100" height="30"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.12964077130000001" green="0.97111526469999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="46i-2z-y5U"/>
+                        <constraint firstAttribute="width" constant="100" id="BkG-S2-2LK"/>
+                    </constraints>
+                    <state key="normal" title="加好友"/>
+                    <connections>
+                        <action selector="addFriend:" destination="-1" eventType="touchUpInside" id="iit-j2-0JH"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qxD-EY-2tI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Un-A0-vM1"/>
+                <constraint firstItem="Vr9-Gy-NEk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="3DY-vN-E8s"/>
+                <constraint firstItem="qxD-EY-2tI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="150" id="TIB-wN-RNg"/>
+                <constraint firstItem="Vr9-Gy-NEk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="k7L-pc-yBY"/>
+            </constraints>
+            <point key="canvasLocation" x="233" y="363"/>
+        </view>
+    </objects>
+</document>

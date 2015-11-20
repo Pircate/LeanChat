@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
+            <connections>
+                <outlet property="backgroundView" destination="i5M-Pr-FkT" id="ycL-gz-8iA"/>
+                <outlet property="chatTableView" destination="NNY-5M-1UU" id="ir5-Eo-4bN"/>
+                <outlet property="chatTextView" destination="if0-FM-5R6" id="aGx-F5-LxD"/>
+                <outlet property="faceBtn" destination="IJd-8U-cOS" id="Ivi-qV-eNb"/>
+                <outlet property="moreBtn" destination="IJd-8U-cOS" id="R7a-7p-kCn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="voiceBtn" destination="sWZ-Lb-q2n" id="Ela-Cb-KOW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-PP-avF">
+                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="if0-FM-5R6">
+                            <rect key="frame" x="47" y="3" width="240" height="35"/>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJd-8U-cOS">
+                            <rect key="frame" x="295" y="2" width="36" height="36"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="skin_qz_icon_face_nor.png"/>
+                            <connections>
+                                <action selector="faceClick:" destination="-1" eventType="touchUpInside" id="K6q-XT-G4x"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41N-K7-VNf">
+                            <rect key="frame" x="339" y="3" width="36" height="36"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="skin_aio_more_nor.png"/>
+                            <connections>
+                                <action selector="moreClick:" destination="-1" eventType="touchUpInside" id="wLF-Oa-xJb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWZ-Lb-q2n">
+                            <rect key="frame" x="3" y="2" width="36" height="36"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="iky.png"/>
+                            <connections>
+                                <action selector="voiceClick:" destination="-1" eventType="touchUpInside" id="Dgh-mY-596"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NNY-5M-1UU">
+                    <rect key="frame" x="0.0" y="64" width="375" height="563"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                </tableView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="211.5" y="414.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iky.png" width="60" height="60"/>
+        <image name="skin_aio_more_nor.png" width="60" height="60"/>
+        <image name="skin_qz_icon_face_nor.png" width="60" height="60"/>
+    </resources>
+</document>

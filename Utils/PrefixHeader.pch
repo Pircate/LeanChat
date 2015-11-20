@@ -1,0 +1,22 @@
+//
+//  PrefixHeader.pch
+//  LeanChat
+//
+//  Created by gao on 15/11/17.
+//  Copyright © 2015年 gao. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "Marco.h"
+#import "Help.h"
+
+#import "RDVTabBarItem.h"
+#import "RDVTabBarController.h"
+#import "ImageTool.h"
+#import "SCNavigation.h"
+#import "SCNavigationController.h"
+#import <NIMSDK.h>
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SendMessageCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZm-kz-Mb4">
+                        <rect key="frame" x="367" y="8" width="0.0" height="27"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.21077072541041719" green="0.63207258046412651" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GFQ-tP-djR">
+                        <rect key="frame" x="325" y="2" width="40" height="40"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="GFQ-tP-djR" secondAttribute="height" multiplier="1:1" id="jmM-KS-TCe"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlu-PK-ANo">
+                        <rect key="frame" x="245" y="11" width="120" height="24"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.1953108721" green="0.63236831100000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="50" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="95" minY="2" maxX="5" maxY="2"/>
+                        <state key="normal" image="esl.png"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="playAudio:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xLu-E4-8F7"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="WZm-kz-Mb4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Qf8-8N-R8j"/>
+                    <constraint firstAttribute="bottom" secondItem="GFQ-tP-djR" secondAttribute="bottom" constant="1" id="eDN-4L-bWU"/>
+                    <constraint firstItem="GFQ-tP-djR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="oxf-WQ-xsc"/>
+                    <constraint firstAttribute="trailing" secondItem="WZm-kz-Mb4" secondAttribute="trailing" constant="8" id="r2y-Zq-9UV"/>
+                    <constraint firstAttribute="trailing" secondItem="GFQ-tP-djR" secondAttribute="trailing" constant="10" id="s9j-ap-fF0"/>
+                    <constraint firstAttribute="bottom" secondItem="WZm-kz-Mb4" secondAttribute="bottom" constant="8" id="uso-li-gwY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="sendMessageImgView" destination="GFQ-tP-djR" id="FX8-PQ-Vbs"/>
+                <outlet property="sendMessageLabel" destination="WZm-kz-Mb4" id="EhZ-Rs-IGh"/>
+                <outlet property="voiceBtn" destination="Wlu-PK-ANo" id="jAV-Ql-WMX"/>
+            </connections>
+            <point key="canvasLocation" x="540.5" y="275"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="esl.png" width="48" height="48"/>
+    </resources>
+</document>
