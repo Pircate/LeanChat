@@ -10,7 +10,6 @@
 #import "AddFriendViewController.h"
 #import "ContacterCell.h"
 #import "ChatViewController.h"
-#import "TableHeaderView.h"
 #import "TeamViewController.h"
 
 @interface ContacterViewController () <UITableViewDataSource,UITableViewDelegate,NIMUserManagerDelegate,NIMTeamManagerDelegate>
@@ -24,19 +23,24 @@
     NSArray *_users;
 }
 
+// 构造方法
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:@"ContacterViewController" bundle:nil]) {
         _contacterDataArray = [NSMutableArray array];
         self.automaticallyAdjustsScrollViewInsets = NO;
         _users = [NSArray array];
+        // 设置用户管理者代理
         [[[NIMSDK sharedSDK] userManager] addDelegate:self];
+        // 设置群组管理者代理
         [[[NIMSDK sharedSDK] teamManager] addDelegate:self];
     }
     return self;
 }
+// 析构方法
 - (void)dealloc
 {
+    // 移除代理
     [[[NIMSDK sharedSDK] userManager] removeDelegate:self];
     [[[NIMSDK sharedSDK] teamManager] removeDelegate:self];
 }
@@ -48,6 +52,7 @@
     _contacterDataArray = [NSMutableArray array];
     NSArray *friends = [[[NIMSDK sharedSDK] userManager] myFriends];
     [_contacterDataArray addObjectsFromArray:friends];
+    // 刷新联系人列表
     [self.contacterTableView reloadData];
 }
 
@@ -119,17 +124,19 @@
 #pragma mark - 初始化导航栏控件
 - (void)initNavigationItem
 {
-    // 添加加好友按钮
+    // 添加好友以及创建群组按钮
     UIImage *image = [[ImageTool shareTool] resizeImageToSize:CGSizeMake(30, 30) sizeOfImage:[UIImage imageNamed:@"erk.png"]];
     SCBarButtonItem *addFriendBtn = [[SCBarButtonItem alloc] initWithImage:image style:SCBarButtonItemStylePlain handler:^(id sender) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         [alert addAction:[UIAlertAction actionWithTitle:@"添加好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             AddFriendViewController *addFriendVC = [[AddFriendViewController alloc] initWithNibName:@"AddFriendViewController" bundle:nil];
+            // 添加好友界面block调用此代码块
             void(^refreshFriend)(void) = ^{
                 [self.contacterTableView reloadData];
             };
             addFriendVC.block = refreshFriend;
+            
             [self.navigationController pushViewController:addFriendVC animated:YES];
         }]];
         
@@ -193,6 +200,7 @@
 {
     NIMUser *user = _contacterDataArray[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // 点击联系人跳转对应的聊天窗口
     ChatViewController *chatVC = [[ChatViewController alloc] initWithNibName:@"ChatViewController" bundle:nil];
     chatVC.user = user;
     chatVC.sessionID = user.userId;

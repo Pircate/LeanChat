@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3E1DBB501BFDC5BB00198942 /* Help.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1DBB4F1BFDC5BB00198942 /* Help.m */; };
-		3E1DBB531BFDFF9700198942 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1DBB521BFDFF9700198942 /* TableHeaderView.m */; };
 		3E1DBB591BFE092800198942 /* TeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1DBB571BFE092800198942 /* TeamViewController.m */; };
 		3E1DBB5A1BFE092800198942 /* TeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1DBB581BFE092800198942 /* TeamViewController.xib */; };
 		3E8AA9921BFC37AD00C94043 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AA94B1BFC37AD00C94043 /* ScrollViewFrameAccessor.m */; };
@@ -1713,8 +1712,6 @@
 		1E850AD58060E5344298063F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1DBB4E1BFDC5BB00198942 /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
 		3E1DBB4F1BFDC5BB00198942 /* Help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Help.m; sourceTree = "<group>"; };
-		3E1DBB511BFDFF9700198942 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
-		3E1DBB521BFDFF9700198942 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		3E1DBB561BFE092800198942 /* TeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamViewController.h; sourceTree = "<group>"; };
 		3E1DBB571BFE092800198942 /* TeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamViewController.m; sourceTree = "<group>"; };
 		3E1DBB581BFE092800198942 /* TeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamViewController.xib; sourceTree = "<group>"; };
@@ -5491,8 +5488,6 @@
 				3E8AA9B61BFC538C00C94043 /* ContacterCell.h */,
 				3E8AA9B71BFC538C00C94043 /* ContacterCell.m */,
 				3E8AA9B81BFC538C00C94043 /* ContacterCell.xib */,
-				3E1DBB511BFDFF9700198942 /* TableHeaderView.h */,
-				3E1DBB521BFDFF9700198942 /* TableHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7430,7 +7425,6 @@
 				3E8AA9AD1BFC37AD00C94043 /* SCNavigationItem.m in Sources */,
 				3E8AA9931BFC37AD00C94043 /* ViewFrameAccessor.m in Sources */,
 				3EE213AB1BFB223E002CAC24 /* SessionViewController.m in Sources */,
-				3E1DBB531BFDFF9700198942 /* TableHeaderView.m in Sources */,
 				3E8AA9B91BFC538C00C94043 /* ContacterCell.m in Sources */,
 				3E8AA9961BFC37AD00C94043 /* MJRefreshBackFooter.m in Sources */,
 				3E8AA9981BFC37AD00C94043 /* MJRefreshFooter.m in Sources */,
@@ -7582,7 +7576,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Utils/PrefixHeader.pch";
 				INFOPLIST_FILE = LeanChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GX.LeanChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iX.LeanChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -7596,7 +7590,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Utils/PrefixHeader.pch";
 				INFOPLIST_FILE = LeanChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GX.LeanChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iX.LeanChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

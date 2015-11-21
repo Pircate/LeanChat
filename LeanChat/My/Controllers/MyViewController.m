@@ -38,10 +38,11 @@
 
     self.sc_navigationItem.title = @"动态";
     [[Help shareHelp] initTableView:self.tableView target:self];
-
+    
     [self createLogoutButton];
 }
 
+// 创建注销按钮,添加在tableFooterView上
 - (void)createLogoutButton
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
@@ -53,7 +54,6 @@
     [logoutBtn setTitle:@"注销" forState:UIControlStateNormal];
     [view addSubview:logoutBtn];
     [logoutBtn addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
-    
 }
 
 #pragma mark - UITableViewDataSource方法
@@ -116,11 +116,13 @@
     
 }
 
+// 注销按钮点击事件
 - (void)logout:(UIButton *)sender
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出当前帐号" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[[NIMSDK sharedSDK] loginManager] logout:^(NSError *error) {
+            // 注销成功后将用户名和密码置为nil 登录状态设为0 并跳转到登录界面
             [USER_DEFAULTS setObject:nil forKey:@"userName"];
             [USER_DEFAULTS setObject:nil forKey:@"password"];
             [USER_DEFAULTS setInteger:0 forKey:@"login"];

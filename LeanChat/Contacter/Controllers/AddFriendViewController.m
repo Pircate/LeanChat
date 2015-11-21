@@ -20,12 +20,14 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:@"AddFriendViewController" bundle:nil]) {
+        // 设置用户管理者代理
         [[[NIMSDK sharedSDK] userManager] addDelegate:self];
     }
     return self;
 }
 - (void)dealloc
 {
+    // 移除代理
     [[[NIMSDK sharedSDK] userManager] removeDelegate:self];
 }
 
@@ -39,6 +41,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+// 添加好友
 - (IBAction)addFriend:(UIButton *)sender {
     NIMUserRequest *request = [[NIMUserRequest alloc] init];
     request.userId = self.friendIDTextField.text;
@@ -51,6 +54,7 @@
     }];
 }
 
+// 添加好友成功调用
 - (void)onFriendChanged:(NIMUser *)user
 {
     self.block();

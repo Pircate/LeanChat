@@ -21,23 +21,29 @@
     
 }
 
+// 构造方法
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:@"SessionViewController" bundle:nil]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
+        // 设置conversation代理
         [NIM_CONVERSATION_MANAGER addDelegate:self];
     }
     return self;
 }
+// 析构方法
 - (void)dealloc
 {
+    // 移除conversation代理
     [NIM_CONVERSATION_MANAGER removeDelegate:self];
+    // 移除通知
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    // 进入会话窗口刷新页面
     [self.sessionTableView reloadData];
 }
 
@@ -46,9 +52,12 @@
     // Do any additional setup after loading the view from its nib.
     self.sc_navigationItem.title = @"最近会话";
     [self initSessionTableView];
+    
+    // 监听移除最近会话的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeRecentSession:) name:@"delete" object:nil];
 }
 
+// 收到通知后调用方法
 - (void)removeRecentSession:(NSNotification *)sender
 {
     for (NIMRecentSession *recentSession in [[[NIMSDK sharedSDK] conversationManager] allRecentSessions]) {
@@ -87,6 +96,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // 点击最近会话跳转对应的聊天界面
     NIMRecentSession *recentSession = [NIM_CONVERSATION_MANAGER allRecentSessions][indexPath.row];
     ChatViewController *chatVC = [[ChatViewController alloc] initWithNibName:@"ChatViewController" bundle:nil];
     chatVC.sessionID = recentSession.session.sessionId;

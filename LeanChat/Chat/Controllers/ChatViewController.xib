@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
-                <outlet property="backgroundView" destination="i5M-Pr-FkT" id="ycL-gz-8iA"/>
+                <outlet property="backgroundView" destination="6kA-PP-avF" id="jn9-IF-tXO"/>
                 <outlet property="chatTableView" destination="NNY-5M-1UU" id="ir5-Eo-4bN"/>
                 <outlet property="chatTextView" destination="if0-FM-5R6" id="aGx-F5-LxD"/>
                 <outlet property="faceBtn" destination="IJd-8U-cOS" id="Ivi-qV-eNb"/>
@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-PP-avF">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-PP-avF">
                     <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="if0-FM-5R6">
@@ -58,8 +58,11 @@
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="bFZ-ZP-E14"/>
+                    </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NNY-5M-1UU">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NNY-5M-1UU">
                     <rect key="frame" x="0.0" y="64" width="375" height="563"/>
                     <animations/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,6 +70,15 @@
             </subviews>
             <animations/>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="6kA-PP-avF" firstAttribute="top" secondItem="NNY-5M-1UU" secondAttribute="bottom" id="Ecn-h3-eG9"/>
+                <constraint firstItem="6kA-PP-avF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pnx-aM-H5Y"/>
+                <constraint firstItem="NNY-5M-1UU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uqu-4c-MJC"/>
+                <constraint firstAttribute="bottom" secondItem="6kA-PP-avF" secondAttribute="bottom" id="Xhm-HH-vVZ"/>
+                <constraint firstAttribute="trailing" secondItem="NNY-5M-1UU" secondAttribute="trailing" id="hAH-8y-hUh"/>
+                <constraint firstAttribute="trailing" secondItem="6kA-PP-avF" secondAttribute="trailing" id="pv9-DO-xCw"/>
+                <constraint firstItem="NNY-5M-1UU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="y8F-56-eTd"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="211.5" y="414.5"/>
         </view>

@@ -26,6 +26,7 @@
 @implementation ChatViewController
 {
     NSMutableArray *_dataArray;
+    CGRect tableFrame;
 }
 
 // 构造方法
@@ -35,9 +36,11 @@
         _dataArray = [NSMutableArray array];
         self.automaticallyAdjustsScrollViewInsets = NO;
         
+        // 设置聊天管理者和消息管理者代理
         [[NIMSDK sharedSDK].chatManager addDelegate:self];
         [NIM_CONVERSATION_MANAGER addDelegate:self];
         
+        // 监听键盘
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
@@ -47,6 +50,7 @@
 // 析构方法
 - (void)dealloc
 {
+    // 移除代理和通知
     [[NIMSDK sharedSDK].chatManager removeDelegate:self];
     [NIM_CONVERSATION_MANAGER removeDelegate:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -55,6 +59,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    // 获取本地消息 并自动刷新到最底部
     NIMSession *session = [NIMSession session:self.sessionID type:NIMSessionTypeP2P];
     NSArray *messages = [[[NIMSDK sharedSDK] conversationManager] messagesInSession:session message:nil limit:100];
     _dataArray = [NSMutableArray array];
@@ -80,6 +85,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    // 页面将要消失的时候停止录制/播放音频
     [[[NIMSDK sharedSDK] mediaManager] stopRecord];
     [[[NIMSDK sharedSDK] mediaManager] stopPlay];
 }
@@ -88,8 +94,11 @@
 - (void)initNavigationItem
 {
     SCBarButtonItem *deleteBtn = [[SCBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ino"] style:SCBarButtonItemStylePlain handler:^(id sender) {
+        // 获取当前会话
         NIMSession *session = [NIMSession session:self.sessionID type:NIMSessionTypeP2P];
+        // 删除当前会话所有消息并移除最近会话
         [NIM_CONVERSATION_MANAGER deleteAllmessagesInSession:session removeRecentSession:YES];
+        // 发送一个通知,移除SessionViewController里面的最近会话
         [[NSNotificationCenter defaultCenter] postNotificationName:@"delete" object:self.sessionID];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -109,7 +118,14 @@
     self.chatTableView.delegate = self;
     self.chatTableView.tableFooterView = [[UIView alloc] init];
     self.chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [self.chatTableView addGestureRecognizer:tap];
+    tableFrame = self.chatTableView.frame;
+}
 
+- (void)tap:(UITapGestureRecognizer *)tap
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - UITableViewDataSource方法
@@ -121,6 +137,7 @@
 {
     NIMMessage *message = _dataArray[indexPath.row];
     
+    // 判断消息是发送的还是接收的
     if (message.isOutgoingMsg) {
         SendMessageCell *sendCell = [tableView dequeueReusableCellWithIdentifier:@"SendMessageCell"];
         if (!sendCell) {
@@ -142,6 +159,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // 动态高度
     NIMMessage *message = _dataArray[indexPath.row];
     switch (message.messageType) {
         case NIMMessageTypeText:
@@ -205,21 +223,24 @@
 #pragma mark - 响应键盘事件
 - (void)keyboardWillShow:(NSNotification *)sender
 {
-    CGRect rect = [[sender.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    CGRect keyboardRect = [[sender.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    float height = tableFrame.size.height - keyboardRect.size.height;
     [UIView animateWithDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.backgroundView.transform = CGAffineTransformMakeTranslation(0, -rect.size.height);
+        
+        self.backgroundView.transform = CGAffineTransformMakeTranslation(0, -keyboardRect.size.height);
+        self.chatTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, height);
+        if (_dataArray.count > 1) {
+            NSIndexPath * idxPath = [NSIndexPath indexPathForRow:_dataArray.count - 1 inSection:0];
+            [self.chatTableView scrollToRowAtIndexPath:idxPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        }
     }];
 }
 - (void)keyboardWillHide:(NSNotification *)sender
 {
     [UIView animateWithDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
         self.backgroundView.transform = CGAffineTransformIdentity;
+        self.chatTableView.frame = tableFrame;
     }];
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
 }
 
 #pragma mark - 键盘发送按钮点击事件
@@ -330,7 +351,7 @@
 - (void)sendMessage:(NIMMessage *)message didCompleteWithError:(NSError *)error
 {
     if (!error) {
-        
+//        NSLog(@"发送成功");
     } else {
         NSLog(@"发送失败");
     }
@@ -393,6 +414,7 @@
 
 
 - (IBAction)voiceClick:(UIButton *)sender {
+    // 点击开始录制音频 再次点击停止录制音频
     if (!sender.selected) {
         [self recordAudio];
     } else {

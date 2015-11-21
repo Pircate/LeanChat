@@ -22,11 +22,13 @@
     
 }
 
+// 自动登录失败调用
 - (void)onAutoLoginFailed:(NSError *)error
 {
     NSLog(@"%@",[error localizedDescription]);
 }
 
+// 监听收到的消息
 - (void)onRecvMessages:(NSArray *)messages
 {
     [UIApplication sharedApplication].applicationIconBadgeNumber += messages.count;
@@ -37,11 +39,11 @@
     // 注册云信
     [[NIMSDK sharedSDK] registerWithAppID:@"bdf4710be2ae1da40a56cf50aa5acea9"
                                   cerName:nil];
-    // 设置chatManager代理
+    // 设置chatManager代理(用来监听未读消息)
     [[[NIMSDK sharedSDK] chatManager] addDelegate:self];
     
+    // 8.0以后需要手动注册推送通知
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-    
     if (version >= 8.0) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
@@ -53,6 +55,7 @@
     [[[NIMSDK sharedSDK] loginManager] autoLogin:[USER_DEFAULTS objectForKey:@"userName"]
                                            token:[USER_DEFAULTS objectForKey:@"password"]];
     
+    // 第一次打开程序进入登录页面 否则进入主页面
     if (![USER_DEFAULTS integerForKey:@"login"]) {
         self.window.rootViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     } else {
@@ -64,7 +67,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // 即将进入后台将未读消息置0
+    // 程序活跃状态不显示未读消息
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
