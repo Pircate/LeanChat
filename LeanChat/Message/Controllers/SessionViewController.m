@@ -18,7 +18,7 @@
 
 @implementation SessionViewController
 {
-    
+    NSArray *array;
 }
 
 // 构造方法
